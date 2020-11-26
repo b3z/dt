@@ -1,21 +1,10 @@
 /*
     dtach - A simple program that emulates the detach feature of screen.
     Copyright (C) 2004-2016 Ned T. Crigler
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    dt - further developed
+    Copyright (c) 2020 b3z
 */
-#include "dtach.h"
+#include "dt.h"
 
 #ifndef VDISABLE
 #ifdef _POSIX_VDISABLE
@@ -249,7 +238,7 @@ attach_main(int noerror)
 
 			if (len == 0)
 			{
-				printf(EOS "\r\n[EOF - dtach terminating]"
+				printf(EOS "\r\n[EOF - dt terminating]"
 					"\r\n");
 				exit(0);
 			}

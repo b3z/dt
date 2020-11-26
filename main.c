@@ -1,37 +1,20 @@
 /*
     dtach - A simple program that emulates the detach feature of screen.
     Copyright (C) 2004-2016 Ned T. Crigler
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    dt - further development
+    Copyright (C) 2020 b3z
 */
-#include "dtach.h"
-
-/*
-** dtach is a quick hack, since I wanted the detach feature of screen without
-** all the other crud. It'll work best with full-screen applications, as it
-** does not keep track of the screen or anything like that.
-*/
+#include "dt.h"
 
 /* Make sure the binary has a copyright. */
-const char copyright[] = "dtach - version " PACKAGE_VERSION "(C)Copyright 2004-2016 Ned T. Crigler";
+const char copyright[] = "dt - version " PACKAGE_VERSION "(C)Copyright 2004-2016 Ned T. Crigleri, 2020 b3z";
 
 /* argv[0] from the program */
 char *progname;
 /* The name of the passed in socket. */
 char *sockname;
 /* The character used for detaching. Defaults to '^\' */
-int detach_char = '\\' - 64;
+int detach_char = 'ad' - 64;
 /* 1 if we should not interpret the suspend character. */
 int no_suspend;
 /* The default redraw method. Initially set to unspecified. */
@@ -49,13 +32,13 @@ static void
 usage()
 {
 	printf(
-		"dtach - version %s, compiled on %s at %s.\n"
-		"Usage: dtach -a <socket> <options>\n"
-		"       dtach -A <socket> <options> <command...>\n"
-		"       dtach -c <socket> <options> <command...>\n"
-		"       dtach -n <socket> <options> <command...>\n"
-		"       dtach -N <socket> <options> <command...>\n"
-		"       dtach -p <socket>\n"
+		"dt - version %s, compiled on %s at %s.\n"
+		"Usage: dt -a <socket> <options>\n"
+		"       dt -A <socket> <options> <command...>\n"
+		"       dt -c <socket> <options> <command...>\n"
+		"       dt -n <socket> <options> <command...>\n"
+		"       dt -N <socket> <options> <command...>\n"
+		"       dt -p <socket>\n"
 		"Modes:\n"
 		"  -a\t\tAttach to the specified socket.\n"
 		"  -A\t\tAttach to the specified socket, or create it if it\n"
@@ -65,7 +48,7 @@ usage()
 		"detached.\n"
 		"  -N\t\tCreate a new socket and run the specified command "
 		"detached,\n"
-		"\t\t  and have dtach run in the foreground.\n"
+		"\t\t  and have dt run in the foreground.\n"
 		"  -p\t\tCopy the contents of standard input to the specified\n"
 		"\t\t  socket.\n"
 		"Options:\n"
@@ -99,7 +82,7 @@ main(int argc, char **argv)
 			usage();
 		else if (strncmp(*argv, "--version", strlen(*argv)) == 0)
 		{
-			printf("dtach - version %s, compiled on %s at %s.\n",
+			printf("dt - version %s, compiled on %s at %s.\n",
 				PACKAGE_VERSION, __DATE__, __TIME__);
 			return 0;
 		}
