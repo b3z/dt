@@ -5,6 +5,9 @@
     Copyright (C) 2020 b3z
 */
 #include "dt.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <dirent.h>
 
 /* Make sure the binary has a copyright. */
 const char copyright[] = "dt - version " PACKAGE_VERSION "(C)Copyright 2004-2016 Ned T. Crigleri, 2020 b3z";
@@ -13,8 +16,8 @@ const char copyright[] = "dt - version " PACKAGE_VERSION "(C)Copyright 2004-2016
 char *progname;
 /* The name of the passed in socket. */
 char *sockname;
-/* The character used for detaching. Defaults to '^\' */
-int detach_char = 'ad' - 64;
+/* The character used for detaching. Defaults to '^7' */
+int detach_char = 'd' - 64;
 /* 1 if we should not interpret the suspend character. */
 int no_suspend;
 /* The default redraw method. Initially set to unspecified. */
@@ -27,7 +30,7 @@ int redraw_method = REDRAW_UNSPEC;
 */
 struct termios orig_term;
 int dont_have_tty;
-
+// TODO rewrite it all
 static void
 usage()
 {
@@ -61,11 +64,36 @@ usage()
 		"\t\t   ctrl_l: Send a Ctrl L character to the program.\n"
 		"\t\t    winch: Send a WINCH signal to the program.\n"
 		"  -z\t\tDisable processing of the suspend key.\n"
-		"\nReport any bugs to <" PACKAGE_BUGREPORT ">.\n",
+		"\nReport any bugs at" PACKAGE_BUGREPORT ".\n",
 		PACKAGE_VERSION, __DATE__, __TIME__);
 	exit(0);
 }
 
+//draft 
+/*
+static int listDefaultSockets() {
+	DIR * dr;
+	struct dirent * en;
+	dr = opendir(strcat(getenv("HOME"), "/.dt/sockets")); //open all or present directory
+	if (dr && (readdir(dr) != NULL)) {
+		printf("Active sessions:\n\n");
+		while ((en = readdir(dr)) != NULL) {
+			char * sock = en -> d_name;
+
+			if (strcmp(sock, ".") == 0 || strcmp(sock, "..") == 0)
+				continue;
+
+			printf("%s\n", sock); //print all directory name
+		}
+		closedir(dr); //close all directory
+	} else
+	{
+		printf("No active sessions in default. ");
+	}
+	
+	return 0;
+}
+*/
 int
 main(int argc, char **argv)
 {

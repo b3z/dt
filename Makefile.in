@@ -9,10 +9,7 @@ VPATH = $(srcdir)
 OBJ = attach.o master.o main.o
 SRC = $(srcdir)/attach.c $(srcdir)/master.c $(srcdir)/main.c
 
-TARFILES = $(srcdir)/README.md $(srcdir)/LICENSE $(srcdir)/Makefile.in \
-	   $(srcdir)/config.h.in $(SRC) \
-	   $(srcdir)/dt.h $(scdir)/dt.spec $(srcdir)/configure \
-	   $(srcdir)/configure.ac $(srcdir)/dt.1
+TARFILES = $(srcdir)/LICENSE $(srcdir)/dt
 
 dt: $(OBJ)
 	$(CC) -o $@ $(LDFLAGS) $(OBJ) $(LIBS)

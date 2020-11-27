@@ -24,7 +24,7 @@ sockets that are stored in the filesystem.
 $ dt -A /tmp/aTask ping 8.8.8.8 
 ```
 
-This will ping 8.8.8.8 but lets you detach with `CTRL + A + D`. Detaching should be intuitiv for screen users.
+This will ping 8.8.8.8 but lets you detach with `CTRL + \`. Detaching should be intuitiv for screen users.
 
 ### Compiling
 
