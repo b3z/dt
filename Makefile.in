@@ -20,6 +20,9 @@ clean:
 distclean: clean
 	rm -f config.h Makefile config.log config.status config.cache
 
+install:
+	install -m 755 dt /usr/local/bin
+
 tar:
 	mkdir dt-$(VERSION)
 	cp $(TARFILES) dt-$(VERSION)
@@ -31,3 +34,5 @@ attach.o: @srcdir@/attach.c @srcdir@/dt.h config.h
 master.o: @srcdir@/master.c @srcdir@/dt.h config.h
 main.o: @srcdir@/main.c @srcdir@/dt.h config.h
 
+uninstall:
+	rm /usr/bin/dt
