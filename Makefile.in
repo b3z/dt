@@ -5,6 +5,7 @@ LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
 VERSION = @PACKAGE_VERSION@
 VPATH = $(srcdir)
+prefix=/usr/local
 
 OBJ = attach.o master.o main.o
 SRC = $(srcdir)/attach.c $(srcdir)/master.c $(srcdir)/main.c
@@ -21,7 +22,7 @@ distclean: clean
 	rm -f config.h Makefile config.log config.status config.cache
 
 install:
-	install -m 755 dt /usr/local/bin
+	install -m 755 dt $(prefix)/bin
 
 tar:
 	mkdir dt-$(VERSION)
